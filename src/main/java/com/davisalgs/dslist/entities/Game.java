@@ -1,54 +1,52 @@
-package com.davisalgs.entities;
+package com.davisalgs.dslist.entities;
 
+import java.util.Objects;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-
-import java.util.Objects;
-
 
 @Entity
 @Table(name = "tb_game")
 public class Game {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "titulo")
+
     private String titulo;
 
-    @Column(name = "ano")
     private Integer ano;
 
-    @Column(name = "genero")
     private String genero;
 
-    @Column(name = "plataforma")
-    private String plataforma;
+    private String plataformas;
 
-    @Column(name = "img_url")
-    private String imgUrl;
+    private Double nota;
 
-    @Column(name = "descricao_curta")
+    private String urlImagem;
+
+    @Column(columnDefinition = "TEXT")
     private String descricaoCurta;
 
-    @Column(name = "descricao_longa")
+    @Column(columnDefinition = "TEXT")
     private String descricaoLonga;
 
-    public Game(){
-
+    public Game() {
     }
 
-    public Game(Long id, String titulo, Integer ano, String genero, String plataforma, String imgUrl, String descricaoCurta, String descricaoLonga) {
+    public Game(Long id, String titulo, Integer ano, String genero, String plataformas, Double nota, String urlImagem,
+                String descricaoCurta, String descricaoLonga) {
         this.id = id;
         this.titulo = titulo;
         this.ano = ano;
         this.genero = genero;
-        this.plataforma = plataforma;
-        this.imgUrl = imgUrl;
+        this.plataformas = plataformas;
+        this.nota = nota;
+        this.urlImagem = urlImagem;
         this.descricaoCurta = descricaoCurta;
         this.descricaoLonga = descricaoLonga;
     }
@@ -85,20 +83,28 @@ public class Game {
         this.genero = genero;
     }
 
-    public String getPlataforma() {
-        return plataforma;
+    public String getPlataformas() {
+        return plataformas;
     }
 
-    public void setPlataforma(String plataforma) {
-        this.plataforma = plataforma;
+    public void setPlataformas(String plataformas) {
+        this.plataformas = plataformas;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public Double getNota() {
+        return nota;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setNota(Double nota) {
+        this.nota = nota;
+    }
+
+    public String getUrlImagem() {
+        return urlImagem;
+    }
+
+    public void setUrlImagem(String urlImagem) {
+        this.urlImagem = urlImagem;
     }
 
     public String getDescricaoCurta() {
@@ -118,19 +124,19 @@ public class Game {
     }
 
     @Override
-    public boolean equals(Object obj) {
-       if (this == obj)
-           return true;
-       if (obj == null)
-           return false;
-       if (getClass() != obj.getClass())
-           return false;
-       Game other = (Game) obj;
-       return Objects.equals(id, other.id);
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Game other = (Game) obj;
+        return Objects.equals(id, other.id);
     }
 }
