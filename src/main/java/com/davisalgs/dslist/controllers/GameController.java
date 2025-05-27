@@ -1,7 +1,6 @@
 package com.davisalgs.dslist.controllers;
 
 import com.davisalgs.dslist.dto.GameMinDTO;
-import com.davisalgs.dslist.entities.Game;
 import com.davisalgs.dslist.services.GameService;
 
 import org.springframework.beans.factory.annotation.Autowired;
